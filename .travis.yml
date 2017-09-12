@@ -1,14 +1,24 @@
-language: haskell
+# Using https://raw.githubusercontent.com/commercialhaskell/stack/master/doc/travis-simple.yml
+# as a reference.
+
+language: generic
 sudo: false
 
 cache:
+# Cache between runs so we don't need to redownload/rebuild everything
   directories:
   - $HOME/.stack
 
 before_install:
+# Install stack
 - mkdir -p ~/.local/bin
 - export PATH=$HOME/.local/bin:$PATH
 - travis_retry curl -L https://www.stackage.org/stack/linux-x86_64 | tar xz --wildcards --strip-components=1 -C ~/.local/bin '*/stack'
 
+install:
+# Install dependencies
+- stack --no-terminal --install-ghc test --only-dependencies
+
 script:
-  - stack --no-terminal --skip-ghc-check test
+# Run tests
+- stack --no-terminal test
