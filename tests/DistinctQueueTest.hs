@@ -26,5 +26,6 @@ properties = testGroup "Properties"
 units :: TestTree
 units = testGroup "Unit Tests"
     [
-        
+        testCase "[1,1,6,9,7,6]" $
+            toList (pushList empty [1,1,6,9,7,6]) @?= [1,6,9,7]
     ]
