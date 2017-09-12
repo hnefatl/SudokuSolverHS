@@ -1,0 +1,39 @@
+name: sudoku
+version: '0.1.0.0'
+category: Games
+author: Keith Collister
+maintainer: hnefatl@gmail.com
+copyright: 2017 Keith Collister
+license: BSD3
+github: hnefatl/sudoku
+extra-source-files:
+- README.md
+library:
+  source-dirs: src
+  exposed-modules:
+  - Board
+  - Util
+  - Solver
+  - DistinctQueue
+  dependencies:
+  - base
+  - containers
+  - array
+executables:
+  sudoku-exe:
+    main: Main.hs
+    source-dirs: app
+    dependencies:
+    - base
+    - sudoku
+tests:
+  sudoku-test:
+    main: Test.hs
+    source-dirs: tests
+    dependencies:
+    - base
+    - sudoku
+    - containers
+    - tasty
+    - tasty-hunit
+    - tasty-quickcheck

@@ -1,0 +1,66 @@
+-- This file has been generated from package.yaml by hpack version 0.17.1.
+--
+-- see: https://github.com/sol/hpack
+
+name:           sudoku
+version:        0.1.0.0
+category:       Games
+homepage:       https://github.com/hnefatl/sudoku#readme
+bug-reports:    https://github.com/hnefatl/sudoku/issues
+author:         Keith Collister
+maintainer:     hnefatl@gmail.com
+copyright:      2017 Keith Collister
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/hnefatl/sudoku
+
+library
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+    , containers
+    , array
+  exposed-modules:
+      Board
+      Util
+      Solver
+      DistinctQueue
+  other-modules:
+      Paths_sudoku
+  default-language: Haskell2010
+
+executable sudoku-exe
+  main-is: Main.hs
+  hs-source-dirs:
+      app
+  build-depends:
+      base
+    , sudoku
+  default-language: Haskell2010
+
+test-suite sudoku-test
+  type: exitcode-stdio-1.0
+  main-is: Test.hs
+  hs-source-dirs:
+      tests
+  build-depends:
+      base
+    , sudoku
+    , containers
+    , tasty
+    , tasty-hunit
+    , tasty-quickcheck
+  other-modules:
+      BoardTest
+      DistinctQueueTest
+      UtilTest
+  default-language: Haskell2010
