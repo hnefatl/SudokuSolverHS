@@ -19,6 +19,7 @@ boardTests = testGroup "Board Tests" [properties, units]
 properties :: TestTree
 properties = testGroup "Properties"
     [
+    ]
 
 units :: TestTree
 units = testGroup "Unit Tests"
