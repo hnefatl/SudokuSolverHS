@@ -56,12 +56,12 @@ units = testGroup "Unit Tests"
         testGroup "listIndices"
         [
             testCase "Single cell" $
-                listIndices (0, 0) (0, 0) @?= Set.fromList [(0,0)],
+                listIndices (0, 0) (0, 0) @?= [(0,0)],
             testCase "Row" $
-                listIndices (0, 0) (5, 0) @?= Set.fromList [(0,0), (1,0), (2,0), (3,0), (4,0), (5,0)],
+                listIndices (0, 0) (5, 0) @?= [(0,0), (1,0), (2,0), (3,0), (4,0), (5,0)],
             testCase "Column" $
-                listIndices (0, 0) (0, 5) @?= Set.fromList [(0,0), (0,1), (0,2), (0,3), (0,4), (0,5)],
+                listIndices (0, 0) (0, 5) @?= [(0,0), (0,1), (0,2), (0,3), (0,4), (0,5)],
             testCase "Rectangle" $
-                listIndices (0, 0) (1, 1) @?= Set.fromList [(0,0), (0,1), (1,0), (1,1)]
+                listIndices (0, 0) (1, 1) @?= [(0,0), (0,1), (1,0), (1,1)]
         ]
     ]

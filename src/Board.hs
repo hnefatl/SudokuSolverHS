@@ -41,7 +41,7 @@ instance Show Board where
 -- Constructs a board given a side length (size). Initially all domains are "full"
 makeBoard :: Size -> Board
 makeBoard size = if isSquare size then Board size (listArray ((0,0), (size-1,size-1)) (repeat $ Possible $ Set.fromAscList [0..size-1]))
-                 else error "Board size must be a square number"
+                                  else error "Board size must be a square number"
 
 
 getDomain :: Board -> Coord -> Domain
@@ -63,11 +63,11 @@ getAffected board (x, y) =  let size = dimension board
                                 -- The x/y coordinates of the bottom-right corner of the small square
                                 smallEnd = (x' + smallSize - 1, y' + smallSize - 1) 
                             in
-                                listIndices (x, 0) (x, size-1) `Set.union`
-                                listIndices (0, y) (size-1, y) `Set.union`
-                                listIndices smallStart smallEnd
+                                (Set.fromList $ listIndices (x, 0) (x, size-1)) `Set.union`
+                                (Set.fromList $ listIndices (0, y) (size-1, y)) `Set.union`
+                                (Set.fromList $ listIndices smallStart smallEnd)
 
 
 -- Generates the list of all coordinates that "fill" a rectangle specified by the inputs
-listIndices :: Coord -> Coord -> Set.Set Coord
-listIndices (x1, y1) (x2, y2) = Set.fromList $ concatMap (\x -> map (\y -> (x, y)) [y1..y2]) [x1..x2]
+listIndices :: Coord -> Coord -> [Coord]
+listIndices (x1, y1) (x2, y2) = concatMap (\x -> map (\y -> (x, y)) [y1..y2]) [x1..x2]

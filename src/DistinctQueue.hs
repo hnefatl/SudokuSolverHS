@@ -2,7 +2,9 @@ module DistinctQueue
 (
     DistinctQueue,
     empty,
+    fromList,
     size,
+    isEmpty,
     front,
     push,
     pushList,
@@ -23,8 +25,14 @@ data DistinctQueue a = DistinctQueue
 empty :: DistinctQueue a
 empty = DistinctQueue S.empty [] []
 
+fromList :: Ord a => [a] -> DistinctQueue a
+fromList = pushList empty
+
 size :: Ord a => DistinctQueue a -> Int
 size (DistinctQueue d _ _) = S.size d
+
+isEmpty :: Ord a => DistinctQueue a -> Bool
+isEmpty q = size q == 0
 
 -- Returns (non-destructively) the element from the front of the queue
 front :: Ord a => DistinctQueue a -> a
